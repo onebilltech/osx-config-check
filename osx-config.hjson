@@ -513,30 +513,6 @@
         undo: "sudo defaults -currentHost write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool true"
     },
     {
-        description: "OpenSSL is up to date."
-        confidence: "required"
-        reference: "https://github.com/drduh/OS-X-Security-and-Privacy-Guide"
-        tests:
-        [
-            {
-                type: "exact match"
-                command: "openssl version"
-                command_pass: "OpenSSL 1.0.2j  26 Sep 2016"
-                case_sensitive: "false"
-            }
-        ]
-        fix:
-        {
-            command: "brew update ; brew install openssl ; brew upgrade openssl ; bash ./scripts/set_openssl_latest_path.sh"
-            manual:
-                '''
-                1. Bring the Terminal application to the foreground if it is not already. You should see the word "Terminal" in the top left corner of your screen.
-                2. Select Terminal->Quit
-                3. Re-open the Terminal application and run the tool again; this check should now pass.
-                '''
-        }
-    },
-    {
         description: "Hidden files are displayed in Finder."
         confidence: "recommended"
         reference: "http://lifehacker.com/the-best-hidden-settings-you-can-unlock-with-os-xs-ter-1476627111"
@@ -1056,33 +1032,6 @@
         }
     },
     {
-        description: "git is up to date or is not installed"
-        confidence: "required"
-        tests:
-        [
-            {
-                type: "regex match"
-                command: "git --version"
-                command_pass: ".*(command not found|2\\.9\\.3|2\\.\\d\\d+\\.\\d+).*"
-                case_sensitive: "false"
-            }
-        ]
-        fix:
-        {
-            //Only "fix" this PATH preference if we haven't already applied the
-            //fix to the ~/.profile file. Otherwise, the user will need to
-            //restart Terminal in order for this take effect.
-            command:
-                brew update ; brew install git ; brew upgrade git ; python ./scripts/set_path_precedence.py "/usr/local/bin" "/usr/bin"
-            manual:
-                '''
-                1. Bring the Terminal application to the foreground if it is not already. You should see the word "Terminal" in the top left corner of your screen.
-                2. Select Terminal->Quit
-                3. Re-open the Terminal application and run the tool again; this check should now pass.
-                '''
-        }
-    },
-    {
         description: "Apple Push Notifications are disabled."
         confidence: "recommended"
         reference: "https://github.com/drduh/OS-X-Security-and-Privacy-Guide"
@@ -1131,25 +1080,6 @@
         {
             sudo_command: sudo bash ./scripts/use_google_dns.sh
         }
-    },
-    {
-        description: "The curl utility is up to date or absent from the system."
-        confidence: "required"
-        tests:
-        [
-            {
-                type: "regex match"
-                command: "curl --version"
-                command_pass: ".*(command not found|7\\.50\\.1).*"
-                case_sensitive: "false"
-            }
-        ]
-        fix:
-        {
-            command:
-                brew update ; brew install curl ; brew upgrade curl ; python ./scripts/set_path_precedence.py "/usr/local/bin" "/usr/bin"
-        }
-        undo: "brew unlink curl"
     },
     {
         description: "FileVault file system encryption is enabled."
