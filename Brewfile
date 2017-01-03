@@ -1,0 +1,6 @@
+tap 'caskroom/cask'
+tap 'homebrew/bundle'
+tap 'homebrew/core'
+cask '1password'
+cask 'google-chrome'
+cask 'slack'

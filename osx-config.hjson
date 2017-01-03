@@ -63,6 +63,23 @@
         }
     }
     {
+        description: "Homebrew dependencies are installed."
+        confidence: "required"
+        tests:
+        [
+            {
+                type: "exact match"
+                command: "brew bundle check"
+                command_pass: "The Brewfile's dependencies are satisfied."
+                case_sensitive: "false"
+            }
+        ]
+        fix:
+        {
+            command: "brew bundle"
+        }
+    },
+    {
         //Tools installed by Homebrew should be preferred according to the PATH
         //environment variable.
         "description": "Binaries installed to /usr/local/bin are preferred over those in /usr/bin (Note: If this check does not pass, other tests will fail)"
