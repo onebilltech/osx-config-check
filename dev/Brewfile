@@ -1,0 +1,7 @@
+instance_eval File.read('../Brewfile'), '../Brewfile', 0
+
+cask 'aws-vault'
+cask 'dash'
+cask 'docker'
+cask 'iterm2'
+cask 'nix'
