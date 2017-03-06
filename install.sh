@@ -18,6 +18,8 @@ cd "$tmpdir" || exit
 git clone https://github.com/onebilltech/osx-config-check.git
 cd osx-config-check
 
+log Install Homebrew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 log Installing Apps
 brew bundle
